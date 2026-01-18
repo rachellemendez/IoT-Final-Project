@@ -32,9 +32,9 @@ A visual schematic illustrating the hardware connections [Image: Lab04_CircuitDi
 * **Language:** C++ (Arduino)
 * **Key Concepts:**
     * **Bi-Directional Communication:** The Arduino sends data (Values) and receives data (Commands).
-    * [cite_start]**String Manipulation:** Uses `.trim()` and `.toLowerCase()` to sanitize user input, ensuring commands work regardless of extra spaces or capitalization[cite: 54].
-    * [cite_start]**State Management:** Relies on boolean variables to track whether the alarm is active or if the user has overridden the system[cite: 43].
-    * [cite_start]**Data Mapping:** Uses the `map()` function to convert raw analog input into a standard 8-bit range[cite: 48].
+    * **String Manipulation:** Uses `.trim()` and `.toLowerCase()` to sanitize user input, ensuring commands work regardless of extra spaces or capitalization.
+    * **State Management:** Relies on boolean variables to track whether the alarm is active or if the user has overridden the system.
+    * **Data Mapping:** Uses the `map()` function to convert raw analog input into a standard 8-bit range.
 
 ## Setup & Usage
 
