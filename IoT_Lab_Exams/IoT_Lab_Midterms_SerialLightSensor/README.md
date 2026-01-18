@@ -19,9 +19,6 @@ The main firmware file containing the C++ source code.
     * **Serial Command Parsing:** The `checkSerialCommands()` function listens for user inputs to switch modes or update thresholds.
     * **Feedback Loop:** The `printSerialStatus()` function reports real-time statistics every 1000ms, including intensity percentage, the active LED, and the current environmental classification.
 
-### `Lab04_CircuitDiagram.png`
-*Note: While the attached filename is Lab04, this diagram serves as the reference for the LDR connection. For this midterm, two additional LEDs are required compared to the standard Lab 4 layout.*
-
 ## Technical Details
 
 ### Hardware Requirements
@@ -67,7 +64,6 @@ The main firmware file containing the C++ source code.
 
 ## Files
 1.  `midterms_exam.ino`
-2.  `Lab04_CircuitDiagram.png`
 
 ## AI
 1.  [Prompts used to transact with your selected Generative AI](https://docs.google.com/document/d/157kyq6bmzsTN36vueSw1yjSqWcjcszTZH0mbGn4xpRg/edit?usp=sharing)
@@ -79,3 +75,4 @@ The main firmware file containing the C++ source code.
 -   Mariano, Jamil S. 
 -   Mendez, Rachelle Yazmhine C. 
 -   Pascual, Audric P. 
+
