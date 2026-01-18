@@ -63,7 +63,7 @@ The main firmware file containing the C++ source code.
 ---
 
 ## Files
-1.  `midterms_exam.ino`
+1.  `SerialLightSensor.ino`
 
 ## AI
 1.  [Prompts used to transact with your selected Generative AI](https://docs.google.com/document/d/157kyq6bmzsTN36vueSw1yjSqWcjcszTZH0mbGn4xpRg/edit?usp=sharing)
@@ -75,4 +75,5 @@ The main firmware file containing the C++ source code.
 -   Mariano, Jamil S. 
 -   Mendez, Rachelle Yazmhine C. 
 -   Pascual, Audric P. 
+
 
