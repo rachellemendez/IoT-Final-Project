@@ -1,30 +1,26 @@
 # Midterm Laboratory Exam: Serial Controlled Light Sensor System
 
 ## Project Overview
-This project implements a **Dual-Mode Light Sensor System** using an Arduino Uno. It monitors ambient light intensity via a photoresistor and visually indicates the light level using a traffic-light LED system (Green/Yellow/Red).
+This project implements a **Dual-Mode Light Sensor System** using an Arduino Uno. The system monitors ambient light intensity via a photoresistor (LDR) and provides visual feedback using a "Traffic Light" LED configuration (Green, Yellow, Red).
 
-The system features two distinct operating modes:
-1.  **Automatic Mode:** The system autonomously determines the environment state ("Cloudy" vs "Clear") and sets LED indicators based on hardcoded thresholds (40% and 70%).
-2.  **Manual Mode:** The user gains full control via the Serial Monitor to dynamically set custom threshold values (`SET LOW` and `SET HIGH`), allowing for calibration to specific environments without re-uploading code.
+The system operates in two distinct modes controlled via the Serial Monitor:
+1.  **Manual Mode (Default):** The user can dynamically set the specific light intensity thresholds for the LEDs using text commands.
+2.  **Automatic Mode:** The system uses fixed, pre-programmed thresholds to classify the environment (e.g., "Cloudy" vs. "Bright Sunlight").
 
 ## Repository Structure
 
-### `sketch_nov8a.ino`
-The main firmware file containing the C++ source code for the Arduino.
-* **Initialization:** Configures pins for the Photoresistor (A0) and LEDs (11, 12, 13).
-* **Core Logic (`loop`):**
-    * Reads the sensor value and maps it to a 0-100% intensity scale.
-    * Executes the `setLED()` function to update the visual indicators based on the current mode (Auto vs Manual).
-    * Prints real-time diagnostics (Intensity, Active LED, Mode) to the Serial Monitor.
-* **Command Processing (`checkSerialInput`):**
-    * Listens for mode switching commands: `MODE AUTO` and `MODE MANUAL`.
-    * Listens for threshold adjustments (Manual Mode only): `SET LOW XX` and `SET HIGH XX`.
+### `midterms_exam.ino`
+The main firmware file containing the C++ source code.
+* **Hardware Configuration:**
+    * **Inputs:** Photoresistor on Pin **A0**.
+    * **Outputs:** Green LED (Pin **11**), Yellow LED (Pin **12**), Red LED (Pin **13**).
+* **System Logic:**
+    * **State Management:** Uses an `enum Mode` (MANUAL, AUTOMATIC) to track the system state.
+    * **Serial Command Parsing:** The `checkSerialCommands()` function listens for user inputs to switch modes or update thresholds.
+    * **Feedback Loop:** The `printSerialStatus()` function reports real-time statistics every 1000ms, including intensity percentage, the active LED, and the current environmental classification.
 
 ### `Lab04_CircuitDiagram.png`
-A visual schematic illustrating the hardware connections used for this exam.
-* **Microcontroller:** Arduino Uno.
-* **Input:** Photoresistor (LDR) connected to Analog Pin A0 with a voltage divider circuit.
-* **Output:** Three LEDs (Green, Yellow, Red) connected to Digital Pins 11, 12, and 13 respectively.
+*Note: While the attached filename is Lab04, this diagram serves as the reference for the LDR connection. For this midterm, two additional LEDs are required compared to the standard Lab 4 layout.*
 
 ## Technical Details
 
@@ -32,54 +28,54 @@ A visual schematic illustrating the hardware connections used for this exam.
 * **Microcontroller:** Arduino Uno
 * **Sensors:** 1x Photoresistor (LDR)
 * **Actuators:** 3x LEDs (Green, Yellow, Red)
-* **Components:** Resistors (10kΩ for LDR divider, 220Ω for LEDs), Breadboard, Jumper Wires
+* **Components:** Resistors (10kΩ for LDR voltage divider, 220Ω for LEDs), Breadboard, Jumper Wires.
 
-### Logic Flow & Thresholds
+### Operation Modes & Logic
 
-#### Automatic Mode Logic
-In this mode, the system uses fixed standard values:
-* **Green (Low Light):** Intensity ≤ 40% (Environment: "Cloudy").
-* **Yellow (Normal Light):** 40% < Intensity ≤ 70%.
-* **Red (High Light):** Intensity > 70% (Environment: "Clear").
+#### 1. Manual Mode
+* **Description:** Allows calibration of the system without re-uploading code.
+* **Commands:**
+    * `SET LOW <number>`: Sets the boundary between Green and Yellow (0-100).
+    * `SET HIGH <number>`: Sets the boundary between Yellow and Red (0-100).
+* **Validation:** The code ensures the Low threshold is always lower than the High threshold.
 
-#### Manual Mode Logic
-In this mode, the user defines the breakpoints via Serial commands:
-* **Green:** Intensity ≤ `LOW_THRESHOLD` (User defined).
-* **Yellow:** `LOW_THRESHOLD` < Intensity ≤ `HIGH_THRESHOLD` (User defined).
-* **Red:** Intensity > `HIGH_THRESHOLD`.
+#### 2. Automatic Mode
+* **Description:** Autonomous operation with hardcoded values.
+* **Thresholds:**
+    * **Green (Cloudy):** Intensity ≤ 40%.
+    * **Yellow (Normal):** 40% < Intensity ≤ 70%.
+    * **Red (Bright Sunlight):** Intensity > 70%.
 
 ## Setup & Usage
 
 1.  **Hardware Assembly:**
-    * Connect the Photoresistor to Pin A0.
-    * Connect Green LED to Pin 11, Yellow to Pin 12, and Red to Pin 13.
+    * Connect the **Photoresistor** to Pin **A0**.
+    * Connect the **Green LED** to Pin **11**.
+    * Connect the **Yellow LED** to Pin **12**.
+    * Connect the **Red LED** to Pin **13**.
 2.  **Software Installation:**
-    * Open `sketch_nov8a.ino` in the Arduino IDE.
+    * Open `midterms_exam.ino` in the Arduino IDE.
 3.  **Execution:**
     * Upload the code to the Arduino.
-    * Open the **Serial Monitor** (9600 baud).
-    * **Observe:** The system defaults to **Manual Mode**.
-    * **Interact:**
+    * Open the **Serial Monitor** (Baud Rate: 9600).
+    * **Initial State:** The system starts in **MANUAL** mode.
+    * **Test Commands:**
         * Type `MODE AUTO` to switch to automatic presets.
-        * Type `MODE MANUAL` to return to manual control.
-        * Type `SET LOW 30` to change the Green/Yellow boundary to 30%.
-        * Type `SET HIGH 80` to change the Yellow/Red boundary to 80%.
+        * Type `SET LOW 20` (in Manual Mode) to adjust the sensitivity.
 
 ---
 
-## Files Description
-1.  **sketch_nov8a.ino**: Main Arduino sketch file.
-2.  **Lab04_CircuitDiagram.png**: Circuit diagram image.
+## Files
+1.  `midterms_exam.ino`
+2.  `Lab04_CircuitDiagram.png`
 
-## Generative AI
-1.  [Prompts used to transact with your selected Generative AI](https://docs.google.com/document/d/1DM2Y4li1f3TO6f3GV8G6GQgeIlcYUiep8Qa7PcUrZw0/edit?usp=sharing)
-2.  **Model used:** ChatGPT5
-3.  [Transaction ID or the link of the conversation](https://chatgpt.com/c/690eca7d-ea0c-8325-a761-d5032e31c679)
+## AI
+1.  [Prompts used to transact with your selected Generative AI](https://docs.google.com/document/d/157kyq6bmzsTN36vueSw1yjSqWcjcszTZH0mbGn4xpRg/edit?usp=sharing)
+2.  **Model used:** Gemini 3 Pro
+3.  [Transaction ID or the link of the conversation](https://gemini.google.com/share/a315dad58546)
 
-## Grades
--   **Leader:** John Harold R. Magma
-### Members
--   Jemuel Chris N. Ambong
--   Keren G. Dellosa
--   Johnny Sagal De Asis
--   Zeus Padilla
+### Contributors
+-   Arrojo, Betina B.
+-   Mariano, Jamil S. 
+-   Mendez, Rachelle Yazmhine C. 
+-   Pascual, Audric P. 
