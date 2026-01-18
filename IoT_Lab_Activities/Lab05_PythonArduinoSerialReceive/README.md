@@ -7,8 +7,8 @@ This project demonstrates **bi-directional serial communication** between a PC a
 
 ### `LabSerialAssignment.ino`
 The main firmware entry point for the Arduino.
-* [cite_start]**Setup:** Initializes the Serial connection at 9600 baud and calls the LED initialization function[cite: 76].
-* **Loop:** Continuously checks for incoming serial data. [cite_start]It reads characters, filters out newline/carriage return formatting characters, and passes valid inputs to the processing logic[cite: 77, 78].
+* **Setup:** Initializes the Serial connection at 9600 baud and calls the LED initialization function.
+* **Loop:** Continuously checks for incoming serial data. It reads characters, filters out newline/carriage return formatting characters, and passes valid inputs to the processing logic.
 
 ### `led_control.h`
 A modular header file containing the hardware logic, keeping the main sketch clean.
@@ -77,3 +77,4 @@ The client-side Python script that runs on the computer.
 - Rachelle Yazmhine C. Mendez
 - Betina B. Arrojo
 - Audric P. Pascual
+
