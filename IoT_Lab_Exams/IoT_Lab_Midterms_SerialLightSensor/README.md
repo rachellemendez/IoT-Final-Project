@@ -51,7 +51,7 @@ The main firmware file containing the C++ source code.
     * Connect the **Yellow LED** to Pin **12**.
     * Connect the **Red LED** to Pin **13**.
 2.  **Software Installation:**
-    * Open `midterms_exam.ino` in the Arduino IDE.
+    * Open `SerialLightSensor.ino` in the Arduino IDE.
 3.  **Execution:**
     * Upload the code to the Arduino.
     * Open the **Serial Monitor** (Baud Rate: 9600).
@@ -75,5 +75,6 @@ The main firmware file containing the C++ source code.
 -   Mariano, Jamil S. 
 -   Mendez, Rachelle Yazmhine C. 
 -   Pascual, Audric P. 
+
 
 
